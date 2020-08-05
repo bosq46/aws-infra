@@ -6,7 +6,7 @@ resource "aws_subnet" "public_0" {
   availability_zone       = "ap-northeast-1a"
   map_public_ip_on_launch = true
   tags = {
-    Name = "terraform: example"
+    Name = local.tag_name
   }
 }
 resource "aws_subnet" "public_1" {
@@ -15,14 +15,14 @@ resource "aws_subnet" "public_1" {
   availability_zone       = "ap-northeast-1c"
   map_public_ip_on_launch = true
   tags = {
-    Name = "terraform: example"
+    Name = local.tag_name
   }
 }
 # インターネットゲートウェイ
 resource "aws_internet_gateway" "example" {
   vpc_id = aws_vpc.example.id
   tags = {
-    Name = "terraform: example"
+    Name = local.tag_name
   }
 }
 # ルートテーブル
@@ -31,7 +31,7 @@ resource "aws_internet_gateway" "example" {
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.example.id
   tags = {
-    Name = "terraform: example"
+    Name = local.tag_name
   }
 }
 # ルート (ルートテーブルの1レコードに該当)

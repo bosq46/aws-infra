@@ -5,7 +5,7 @@ resource "aws_subnet" "private_0" {
   availability_zone       = "ap-northeast-1a"
   map_public_ip_on_launch = false
   tags = {
-    Name = "terraform: example"
+    Name = local.tag_name
   }
 }
 resource "aws_subnet" "private_1" {
@@ -14,7 +14,7 @@ resource "aws_subnet" "private_1" {
   availability_zone       = "ap-northeast-1c"
   map_public_ip_on_launch = false
   tags = {
-    Name = "terraform: example"
+    Name = local.tag_name
   }
 }
 # Elastic IP
@@ -23,14 +23,14 @@ resource "aws_eip" "nat_gateway_0" {
   vpc        = true
   depends_on = [aws_internet_gateway.example]
   tags = {
-    Name = "terraform: example"
+    Name = local.tag_name
   }
 }
 resource "aws_eip" "nat_gateway_1" {
   vpc        = true
   depends_on = [aws_internet_gateway.example]
   tags = {
-    Name = "terraform: example"
+    Name = local.tag_name
   }
 }
 # NAT ゲートウェイ
@@ -40,7 +40,7 @@ resource "aws_nat_gateway" "nat_gateway_0" {
   subnet_id     = aws_subnet.public_0.id
   depends_on    = [aws_internet_gateway.example]
   tags = {
-    Name = "terraform: example"
+    Name = local.tag_name
   }
 }
 resource "aws_nat_gateway" "nat_gateway_1" {
@@ -48,7 +48,7 @@ resource "aws_nat_gateway" "nat_gateway_1" {
   subnet_id     = aws_subnet.public_1.id
   depends_on    = [aws_internet_gateway.example]
   tags = {
-    Name = "terraform: example"
+    Name = local.tag_name
   }
 }
 
@@ -56,13 +56,13 @@ resource "aws_nat_gateway" "nat_gateway_1" {
 resource "aws_route_table" "private_0" {
   vpc_id = aws_vpc.example.id
   tags = {
-    Name = "terraform: example"
+    Name = local.tag_name
   }
 }
 resource "aws_route_table" "private_1" {
   vpc_id = aws_vpc.example.id
   tags = {
-    Name = "terraform: example"
+    Name = local.tag_name
   }
 }
 # ルート
