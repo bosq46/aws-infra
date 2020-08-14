@@ -7,3 +7,10 @@ resource "aws_vpc" "example" {
     Name = local.tag_name
   }
 }
+# インターネットゲートウェイ
+resource "aws_internet_gateway" "example" {
+  vpc_id = aws_vpc.example.id
+  tags = {
+    Name = local.tag_name
+  }
+}

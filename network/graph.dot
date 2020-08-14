@@ -1,0 +1,92 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_eip.nat_gateway_0" [label = "aws_eip.nat_gateway_0", shape = "box"]
+		"[root] aws_eip.nat_gateway_1" [label = "aws_eip.nat_gateway_1", shape = "box"]
+		"[root] aws_internet_gateway.example" [label = "aws_internet_gateway.example", shape = "box"]
+		"[root] aws_nat_gateway.nat_gateway_0" [label = "aws_nat_gateway.nat_gateway_0", shape = "box"]
+		"[root] aws_nat_gateway.nat_gateway_1" [label = "aws_nat_gateway.nat_gateway_1", shape = "box"]
+		"[root] aws_route.private_0" [label = "aws_route.private_0", shape = "box"]
+		"[root] aws_route.private_1" [label = "aws_route.private_1", shape = "box"]
+		"[root] aws_route.public" [label = "aws_route.public", shape = "box"]
+		"[root] aws_route_table.private_0" [label = "aws_route_table.private_0", shape = "box"]
+		"[root] aws_route_table.private_1" [label = "aws_route_table.private_1", shape = "box"]
+		"[root] aws_route_table.public" [label = "aws_route_table.public", shape = "box"]
+		"[root] aws_route_table_association.private_0" [label = "aws_route_table_association.private_0", shape = "box"]
+		"[root] aws_route_table_association.private_1" [label = "aws_route_table_association.private_1", shape = "box"]
+		"[root] aws_route_table_association.public_0" [label = "aws_route_table_association.public_0", shape = "box"]
+		"[root] aws_route_table_association.public_1" [label = "aws_route_table_association.public_1", shape = "box"]
+		"[root] aws_subnet.private_0" [label = "aws_subnet.private_0", shape = "box"]
+		"[root] aws_subnet.private_1" [label = "aws_subnet.private_1", shape = "box"]
+		"[root] aws_subnet.public_0" [label = "aws_subnet.public_0", shape = "box"]
+		"[root] aws_subnet.public_1" [label = "aws_subnet.public_1", shape = "box"]
+		"[root] aws_vpc.example" [label = "aws_vpc.example", shape = "box"]
+		"[root] local.tag_name" [label = "local.tag_name", shape = "note"]
+		"[root] output.aws_subnet_private_0" [label = "output.aws_subnet_private_0", shape = "note"]
+		"[root] output.aws_subnet_private_1" [label = "output.aws_subnet_private_1", shape = "note"]
+		"[root] output.aws_subnet_public_0" [label = "output.aws_subnet_public_0", shape = "note"]
+		"[root] output.aws_subnet_public_1" [label = "output.aws_subnet_public_1", shape = "note"]
+		"[root] output.aws_vpc" [label = "output.aws_vpc", shape = "note"]
+		"[root] provider.aws" [label = "provider.aws", shape = "diamond"]
+		"[root] aws_eip.nat_gateway_0" -> "[root] aws_internet_gateway.example"
+		"[root] aws_eip.nat_gateway_1" -> "[root] aws_internet_gateway.example"
+		"[root] aws_internet_gateway.example" -> "[root] aws_vpc.example"
+		"[root] aws_nat_gateway.nat_gateway_0" -> "[root] aws_eip.nat_gateway_0"
+		"[root] aws_nat_gateway.nat_gateway_0" -> "[root] aws_subnet.public_0"
+		"[root] aws_nat_gateway.nat_gateway_1" -> "[root] aws_eip.nat_gateway_1"
+		"[root] aws_nat_gateway.nat_gateway_1" -> "[root] aws_subnet.public_1"
+		"[root] aws_route.private_0" -> "[root] aws_nat_gateway.nat_gateway_1"
+		"[root] aws_route.private_0" -> "[root] aws_route_table.private_0"
+		"[root] aws_route.private_1" -> "[root] aws_nat_gateway.nat_gateway_1"
+		"[root] aws_route.private_1" -> "[root] aws_route_table.private_1"
+		"[root] aws_route.public" -> "[root] aws_internet_gateway.example"
+		"[root] aws_route.public" -> "[root] aws_route_table.public"
+		"[root] aws_route_table.private_0" -> "[root] aws_vpc.example"
+		"[root] aws_route_table.private_1" -> "[root] aws_vpc.example"
+		"[root] aws_route_table.public" -> "[root] aws_vpc.example"
+		"[root] aws_route_table_association.private_0" -> "[root] aws_route_table.private_0"
+		"[root] aws_route_table_association.private_0" -> "[root] aws_subnet.private_0"
+		"[root] aws_route_table_association.private_1" -> "[root] aws_route_table.private_1"
+		"[root] aws_route_table_association.private_1" -> "[root] aws_subnet.private_1"
+		"[root] aws_route_table_association.public_0" -> "[root] aws_route_table.public"
+		"[root] aws_route_table_association.public_0" -> "[root] aws_subnet.public_0"
+		"[root] aws_route_table_association.public_1" -> "[root] aws_route_table.public"
+		"[root] aws_route_table_association.public_1" -> "[root] aws_subnet.public_1"
+		"[root] aws_subnet.private_0" -> "[root] aws_vpc.example"
+		"[root] aws_subnet.private_1" -> "[root] aws_vpc.example"
+		"[root] aws_subnet.public_0" -> "[root] aws_vpc.example"
+		"[root] aws_subnet.public_1" -> "[root] aws_vpc.example"
+		"[root] aws_vpc.example" -> "[root] local.tag_name"
+		"[root] aws_vpc.example" -> "[root] provider.aws"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_nat_gateway.nat_gateway_0"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_route.private_0"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_route.private_1"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_route.public"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_route_table_association.private_0"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_route_table_association.private_1"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_route_table_association.public_0"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_route_table_association.public_1"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] output.aws_subnet_private_0"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] output.aws_subnet_private_1"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] output.aws_subnet_public_0"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] output.aws_subnet_public_1"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] output.aws_vpc"
+		"[root] output.aws_subnet_private_0" -> "[root] aws_subnet.private_0"
+		"[root] output.aws_subnet_private_1" -> "[root] aws_subnet.private_1"
+		"[root] output.aws_subnet_public_0" -> "[root] aws_subnet.public_0"
+		"[root] output.aws_subnet_public_1" -> "[root] aws_subnet.public_1"
+		"[root] output.aws_vpc" -> "[root] aws_vpc.example"
+		"[root] provider.aws (close)" -> "[root] aws_nat_gateway.nat_gateway_0"
+		"[root] provider.aws (close)" -> "[root] aws_route.private_0"
+		"[root] provider.aws (close)" -> "[root] aws_route.private_1"
+		"[root] provider.aws (close)" -> "[root] aws_route.public"
+		"[root] provider.aws (close)" -> "[root] aws_route_table_association.private_0"
+		"[root] provider.aws (close)" -> "[root] aws_route_table_association.private_1"
+		"[root] provider.aws (close)" -> "[root] aws_route_table_association.public_0"
+		"[root] provider.aws (close)" -> "[root] aws_route_table_association.public_1"
+		"[root] root" -> "[root] meta.count-boundary (EachMode fixup)"
+		"[root] root" -> "[root] provider.aws (close)"
+	}
+}
+

@@ -1,0 +1,21 @@
+[
+    {
+        "name": "httpbin",
+        "image": "kennethreitz/httpbin:latest",
+        "essential": true,
+        "portMappings": [
+            {
+                "protocol": "tcp",
+                "containerPort": 80
+            }
+        ],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-region": "ap-northeast-1",
+                "awslogs-stream-prefix": "httpbin",
+                "awslogs-group": "/aws/ecs/httpbin"
+            }
+        }
+    }
+]

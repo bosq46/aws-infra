@@ -18,13 +18,6 @@ resource "aws_subnet" "public_1" {
     Name = local.tag_name
   }
 }
-# インターネットゲートウェイ
-resource "aws_internet_gateway" "example" {
-  vpc_id = aws_vpc.example.id
-  tags = {
-    Name = local.tag_name
-  }
-}
 # ルートテーブル
 # VPC内の通信をするため、ローカルルートが自動生成される
 # Terraformで制御できない
